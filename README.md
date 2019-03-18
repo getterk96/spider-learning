@@ -1,5 +1,5 @@
 # Spider Learning
-chatting for network spiders...
+Chatting on web spiders...
 
 ## 爬虫的基本知识
 爬虫是通过向网站服务器发送请求来获取响应，并通过解析响应来获取所需信息的工具。
