@@ -10,7 +10,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
 
-index_file_dir = "D:/index/"  # path-to-your-index
+index_file_dir = "./"  # path-to-your-index
 proxies = [{"https": "http://127.0.0.1:1081"}, {"https": "http://127.0.0.1:1082"}, {"https": "http://127.0.0.1:1083"},
            {"https": "http://127.0.0.1:1084"}, {"https": "http://127.0.0.1:1085"}, {"https": "http://127.0.0.1:1086"},
            {"https": "http://127.0.0.1:1087"}, {"https": "http://127.0.0.1:1088"}, {"https": "http://127.0.0.1:1089"},
@@ -275,6 +275,7 @@ def run(index_queue, cur_data, restored_data, index_point):
         print("Please check the cookies and restart the spider!")
 
 
-index = load_index()
-data = restore_data(index[0], index[1])
-run(data[0], data[1], data[2], data[3])
+if __name__ == "__main__":
+    index = load_index()
+    data = restore_data(index[0], index[1])
+    run(data[0], data[1], data[2], data[3])
