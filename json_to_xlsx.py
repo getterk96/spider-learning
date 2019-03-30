@@ -1,7 +1,6 @@
 import json
 import xlsxwriter
 import pandas as pd
-import time
 import threading
 import queue
 
@@ -65,7 +64,7 @@ for worker in my_workers:
 for worker in my_workers:
     worker.join()
 
-writer = pd.ExcelWriter('test.xlsx', engine='xlsxwriter', options={'strings_to_urls': False})
+writer = pd.ExcelWriter(file_name[0:-4] + '.xlsx', engine='xlsxwriter', options={'strings_to_urls': False})
 for item in xlsx_data_frames:
     item['data'].to_excel(writer, item['name'])
 writer.save()
