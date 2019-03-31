@@ -5,6 +5,7 @@ import json
 import time
 import queue
 import os
+from datetime import datetime
 from bs4 import BeautifulSoup
 import smtplib
 from email.mime.text import MIMEText
@@ -124,29 +125,27 @@ def request_for_html(url, cur_data, index_point):
                   "application/signed-exchange;v=b3",
         "Accept-Encoding": "gzip, deflate, br",
         "Cache-Control": "max-age=0",
-        "Cookie": "bid=0T7CuQvkg4Y; ll='108288'; __yadk_uid=covotNZx9vMZFgQc6brLzRdQVbp4L9cF; "
+        "Cookie": "bid=0T7CuQvkg4Y; ll=\"108288\"; __yadk_uid=covotNZx9vMZFgQc6brLzRdQVbp4L9cF; "
                   "_vwo_uuid_v2=DF5DD1D49EC24D1447F98645B9179E22A|0a9f95518f9bf2f3e3334e4921da1ce0; push_noty_num=0; "
                   "push_doumail_num=0; __utmv=30149280.15862; __utmc=30149280; __utmc=223695111; ps=y; ct=y; "
-                  "__utmz=30149280.1553397893.16.4.utmcsr=baidu|utmccn=("
+                  "__utma=223695111.1140888479.1552825016.1553759441.1553959598.18; "
+                  "__utmz=223695111.1553959598.18.9.utmcsr=baidu|utmccn=("
                   "organic)|utmcmd=organic|utmctr=%E8%B1%86%E7%93%A3; "
-                  "_pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1553497738%2C%22https%3A%2F%2Fwww.baidu.com%2Fs%3Fie"
+                  "__utma=30149280.1017682141.1552825016.1553959598.1553959598.20; "
+                  "__utmz=30149280.1553959598.20.6.utmcsr=baidu|utmccn=("
+                  "organic)|utmcmd=organic|utmctr=%E8%B1%86%E7%93%A3; "
+                  "_pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1554011655%2C%22https%3A%2F%2Fwww.baidu.com%2Fs%3Fie"
                   "%3Dutf-8%26f%3D8%26rsv_bp%3D1%26rsv_idx%3D1%26tn%3Dbaidu%26wd%3D%25E8%25B1%2586%25E7%2593%25A3"
-                  "%26oq%3D%2525E8%2525B1%252586%2525E7%252593%2525A3%2525E5%25258F%25258D%2525E7%252588%2525AC"
-                  "%2525E8%252599%2525AB%2525E6%25259C%2525BA%2525E5%252588%2525B6%26rsv_pq%3Df736e7c600010647"
-                  "%26rsv_t%3D97a6xJZ%252Fxhe4SmTWnKNWvOGOy%252FnKvXwjOrfTbpuL%252FZvc4LfjWpmSzgmYfyQ%26rqlang%3Dcn"
-                  "%26rsv_enter%3D1%26inputT%3D1080%26rsv_sug3%3D43%26rsv_sug2%3D0%26rsv_sug4%3D1647%26rsv_sug%3D1%22"
-                  "%5D; _pk_ses.100001.4cf6=*; ap_v=0,"
-                  "6.0; __utma=30149280.1017682141.1552825016.1553397893.1553497741.17; "
-                  "__utma=223695111.1140888479.1552825016.1553397893.1553498040.16; __utmb=223695111.0.10.1553498040; "
-                  "__utmz=223695111.1553498040.16.7.utmcsr=douban.com|utmccn=(referral)|utmcmd=referral|utmcct=/; "
-                  "__utmt_t1=1; __utmt=1; dbcl2='158620360:DFMDLDgQomM'; ck=yHx3; "
-                  "_pk_id.100001.4cf6=1154722f256b0bf6.1552792494.22.1553498493.1553399607.; "
-                  "__utmb=30149280.28.8.1553498493347; "
-                  "RT=s=1553498514412&r=https%3A%2F%2Fmovie.douban.com%2Fsubject%2F26715636%2Fcomments%3Fstart"
-                  "%3D23765%26amp%3Blimit%3D20%26amp%3Bsort%3Dnew_score%26amp%3Bstatus%3DP"}
+                  "%26rsv_pq%3D9c16380f0004f1b7%26rsv_t%3D4d64XyGSTAB76hhLAAL4Nkgg84bznIYcKMeENuNDottsxXbbRruon9eGo2o"
+                  "%26rqlang%3Dcn%26rsv_enter%3D1%26rsv_sug3%3D7%26rsv_sug1%3D7%26rsv_sug7%3D100%26rsv_sug2%3D0"
+                  "%26inputT%3D1424%26rsv_sug4%3D1424%26rsv_sug%3D2%22%5D; _pk_ses.100001.4cf6=*; ap_v=0,"
+                  "6.0; dbcl2=\"158620360:/CST1jorn40\"; ck=W5z3; "
+                  "_pk_id.100001.4cf6=1154722f256b0bf6.1552792494.25.1554012024.1553959720.; "
+                  "RT=s=1554012032941&r=https%3A%2F%2Fmovie.douban.com%2Fsubject%2F27179414%2Fcomments%3Fstart%3D1000"
+                  "%26limit%3D20%26sort%3Dnew_score%26status%3DP"}
     while 1:
         try:
-            r = requests.get(url, headers=headers, proxies=random.choice(proxies))
+            r = requests.get(url, headers=headers)#, proxies=random.choice(proxies))
             break
         except:
             dump_into_result_file(cur_data, index_point)
@@ -212,7 +211,6 @@ def run(index_queue, cur_data, restored_data, index_point):
             discussion_num = -1
 
         short_blocked = False
-        short_num = {"P": -1, "F": -1}
         short_reviews = restored_data["short_reviews"]
 
         for status in ["P", "F"]:
@@ -222,10 +220,9 @@ def run(index_queue, cur_data, restored_data, index_point):
                     break
 
                 shorts_soup = request_for_html(
-                    movie_index["url"] + "comments?start={}&limit=20&sort=new_score&status={}".format(
+                    movie_index["url"] + "comments?start={}&limit=20&sort=time&status={}".format(
                         len(short_reviews[status]), status), cur_data, index_point)
                 try:
-                    short_num[status] = shorts_soup.find(class_="CommentTabs").span.string[3:-1]
                     comments = shorts_soup.find_all(class_="comment")
                 except:
                     short_block_risk = short_block_risk + 1
@@ -233,15 +230,17 @@ def run(index_queue, cur_data, restored_data, index_point):
 
                 for comment in comments:
                     try:
+                        date = comment.find("span", class_="comment-time").attrs["title"]
+                        comment_date = datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
+                        if comment_date > datetime.strptime(movie_index['final_date'], '%Y-%m-%d %H:%M:%S'):
+                            raise Exception("Not Proper Date!")
                         short_reviews[status].append({"votes": comment.find("span", class_="votes").string,
                                                       "user": comment.find("span", class_="comment-info").a.string,
                                                       "status": status,
                                                       "rating":
                                                           comment.find("span", class_="rating").attrs["class"][0][
                                                               -2] if status == "P" else -1,
-                                                      "comment-time":
-                                                          comment.find("span", class_="comment-time").attrs[
-                                                              "title"],
+                                                      "comment-time": date,
                                                       "content": comment.find("span", class_="short").string})
                     except:
                         short_reviews[status].append({})
