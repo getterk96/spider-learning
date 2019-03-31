@@ -145,7 +145,7 @@ def request_for_html(url, cur_data, index_point):
                   "%26limit%3D20%26sort%3Dnew_score%26status%3DP"}
     while 1:
         try:
-            r = requests.get(url, headers=headers)#, proxies=random.choice(proxies))
+            r = requests.get(url, headers=headers, proxies=random.choice(proxies))
             break
         except:
             dump_into_result_file(cur_data, index_point)
